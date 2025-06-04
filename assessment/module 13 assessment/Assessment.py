@@ -5,53 +5,93 @@
 
 
 
-def input_subjects_and_marks():
-    subjects = []
-    marks = []
-    num_subjects = int(input("How many subjects do you want to enter? "))
+
+
+my_list = []
+
+def student_manage():
+    student_dic = {}
+    subject = {}
+    total_marks = 0
     
-    for i in range(num_subjects):
-        subject = input(f"Enter the name of subject {i+1}: ")
-        subjects.append(subject)
-        while True:
-            mark = input(f"Enter marks for {subject} (0-100): ")
-            if mark.isdigit() and 0 <= int(mark) <= 100:
-                marks.append(int(mark))
-                break
-            else:
-                print("Please enter valid marks between 0 and 100.")
-    return subjects, marks
 
-def calculate_average(marks):
-    return sum(marks) / len(marks)
+    student = input("\nEnter Student Name :")
+    sub = int(input("\nEnter How Many Subject ? :"))
+    
+    for i in range(sub):
+        sub1 = input("Enter Name of Subject : ")
+        marks = int(input(f"Enter Marks for {sub1} :"))
 
 
-def determine_grade(average):
-    if average >= 90:
-        return 'A'
-    elif average >= 80:
-        return 'B'
-    elif average >= 70:
-        return 'C'
-    elif average >= 60:
-        return 'D'
+    
+        subject[sub1] = marks
+        total_marks += marks
+
+    average = total_marks/sub
+    grade = grade_fun(average)
+
+    
+
+    student_dic["Name"] = student
+    student_dic["Average"] = average
+    # student_dic["Grade"] = grade_fun(average)
+    student_dic["Grade"] = grade
+
+    my_list.append(student_dic)
+
+    # print("list is ", my_list)
+
+    print("\nStudent Added Successfully ")
+
+def All_student():
+    for i, entry in enumerate(my_list,1):
+        print(f"{i}.  Name : {entry["Name"]}")
+        print(f"    Average : {entry["Average"]}")
+        print(f"    Grade : {entry["Grade"]}")
+
+        print("=======================")
+
+
+
+def grade_fun(average):
+    
+    if average>=90:
+        return "A+"
+    elif average>=80:
+        return "A"
+    elif average>=70:
+        return "B"
+    elif average>=60:
+        return "C"
+    elif average>=50:
+        return "D"
     else:
-        return 'F'
+        return "F"
 
 
-def display_results(subjects, marks, average, grade):
-    print("\n--- Grade Report ---")
-    for i in range(len(subjects)):
-        print(f"{subjects[i]}: {marks[i]}")
-    print(f"Average Marks: {average:.2f}")
-    print(f"Overall Grade: {grade}")
+    # print("Student ave :",average)
 
-def main():
-    subjects, marks = input_subjects_and_marks()
-    average = calculate_average(marks)
-    grade = determine_grade(average)
-    display_results(subjects, marks, average, grade)
+    # print("\nStudent Added Successfully !!")
 
 
-if __name__ == "__main__":
-    main()
+
+while True:
+
+    menu = """
+    1. Add Student
+    2. Show All Student
+    3. Exit"""
+
+    print(menu)
+
+    choice = int(input("\nEnter Your  Option :"))
+
+    if choice == 1:
+        student_manage()
+    elif choice == 2:
+        All_student()
+    elif choice == 3:
+        print("Thnak You !!")
+    else:
+        print("Invalid Choice !!")
+    break
