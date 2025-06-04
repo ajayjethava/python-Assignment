@@ -34,12 +34,10 @@ def student_manage():
 
     student_dic["Name"] = student
     student_dic["Average"] = average
-    # student_dic["Grade"] = grade_fun(average)
     student_dic["Grade"] = grade
 
     my_list.append(student_dic)
 
-    # print("list is ", my_list)
 
     print("\nStudent Added Successfully ")
 
@@ -69,10 +67,6 @@ def grade_fun(average):
         return "F"
 
 
-    # print("Student ave :",average)
-
-    # print("\nStudent Added Successfully !!")
-
 
 
 while True:
@@ -94,4 +88,4 @@ while True:
         print("Thnak You !!")
     else:
         print("Invalid Choice !!")
-    break
+    
